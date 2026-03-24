@@ -1,11 +1,24 @@
 import './twitterFollowCard.css'
-export function TwitterFollowCard({ name, userName, isFollowing }) {
+import { useState } from 'react'
+export function TwitterFollowCard({ name, userName, initialIsFollowing }) {
+    const [isFollowing, setIsFollowing] = useState(initialIsFollowing)
+
+    //hola
+    const buttonClassName = isFollowing
+        ? 'tw-followcard-button is-following'
+        : 'tw-followcard-button'
+
+    const handleClick = () => {
+        setIsFollowing(!isFollowing)
+    }
+
+    const text = isFollowing ? 'Following' : 'Follow'
     return (
         <article className="tw-followcard">
             <header className="tw-followcard-header">
                 <img
                     className="tw-followcard-avatar"
-                    src="https://img.freepik.com/psd-gratis/ilustracion-3d-avatar-o-perfil-humano_23-2150671122.jpg"
+                    src={`https://unavatar.io/x/${userName}`}
                     alt="avatar" />
                 <div className='tw-followcard-info'>
                     <strong>{name}</strong>
@@ -14,7 +27,10 @@ export function TwitterFollowCard({ name, userName, isFollowing }) {
             </header>
 
             <aside>
-                <button className='tw-followcard-button' >Follow</button>
+                <button className={buttonClassName} onClick={handleClick} >
+                    <span className='tw-followcard-text'>{text}</span>
+                    <span className='tw-followcard-unfollow'>Unfollow</span>
+                </button>
             </aside>
         </article>
     )
