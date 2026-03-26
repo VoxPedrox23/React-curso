@@ -70,7 +70,7 @@
 
 .tw-followcard-button.is-following:hover .tw-followcard-text {
     display: none;
-}
+} 
 
 .tw-followcard-button.is-following:hover .tw-followcard-unfollow {
     display: block;
